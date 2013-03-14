@@ -1,79 +1,68 @@
-//Lab 10. Variant 1. Yaskovich Dmitry (T02-01c). Dimini Inc. (c)2013
-#include <stdio.h>//defining header files
-#include <string.h>
+//Самостоятельная работа 10. Вариант 1. Яскович Дмитрий (T02-01c). Dimini Inc. (c)2013
+#include <stdio.h>//подключение библиотеки ввода/вывода
+#include <string.h>//подключение библиотеки работы со строками
 
-int search(char *string1, char *charmax, char *charword, char *symbol, int *length); //functions prototypes
+int search(char *string, int *length); //прототип функции
 
-int main(void)//main function
+int main(void)//главная функция
 {
- int length=-1;
- char string [80], charmax[80], charword[80],symbol;
-  printf("Enter string: ");//input
- gets(string);
- search(string,charmax,charword,&symbol,&length);
- search(string,charmax,charword,&symbol,&length);
- //scanf("%d %d", &a,&b);
- /*for (i = 0; i < strlen(string1); i++)
- {
-  symbol=string1[i];
-  if ((strchr(" `~!@#$%^&*()_+{}|:<>?/.,\][-	",symbol))|| (i==(strlen(string1)-1)))
-  {
-	 if (i==(strlen(string1)-1))
-   {
-	  charword[i-j]=symbol;
-   }
-   j=i+1;
-	printf("%s\n",charword);
-	strcpy(charmax,charword);
-	memset(charword,0,sizeof(charword));
-  }
-  else
-  {
-  charword[i-j]=symbol;
-  }
- } */
- fflush(stdin);//waiting for the user
- getchar();
- return 0;
+	int length=-1;//определение переменных
+	char string [100000], charmax[100000];
+	printf("Enter string: ");//запрос ввода
+	gets(string);//считывание строки
+	search(string,&length);//определение максимальной длины слова
+	printf("Long word(s):");//надпись, сопровождающая вывод
+	search(string,&length);//поиск и вывод слов с максимальной длиной
+	fflush(stdin);//ожидание действий пользователя
+	getchar();
+	return 0;
 }
 
-int search(char *string1, char *charmax1, char *charword1, char *symbol, int *length)
+int search(char *string, int *length)//функция работы со строкой
 {
-int i,j=0,l,lmax=0;
-	memset(charword1,0,sizeof(charword1));
- for (i = 0; i < strlen(string1); i++)
- {
-  *symbol=string1[i];
-  if ((strchr(" `~!@#$%^&*()_+{}|:<>?/.,\][-	",*symbol))|| (i==(strlen(string1)-1)))
-  {
-	 if (i==(strlen(string1)-1))
-   {
-	  charword1[i-j]=*symbol;
-   }
-   j=i+1;
-   if (*length==-1) {
-   l=strlen(charword1);
-	if (l>lmax) {
-	 lmax=l;
+	int i,j=0,l,lmax=0;//определение переменных
+	char string1[100000],charword1[100000],symbol;
+	memset(charword1,0,sizeof(charword1));//очистка переменной для текущего слова
+	strcpy(string1,string);//сброс данных в локальную переменную
+	for (i = 0; i < strlen(string1); i++)//цикл прохода введённой строки
+	{
+		symbol=string1[i];//считывание символа
+		if ((strchr(" `~!@#$%^&*()_+{}|:<>?/.,\][-	",symbol))|| (i==(strlen(string1)-1)))//условие конца слова или конца строки
+		{
+			if (i==(strlen(string1)-1))//действия в случае конца строки
+			{
+				charword1[i-j]=symbol;//завершение считывания слова
+			}
+			j=i+1;//изменение переменной отвечающей за место считанного символа в слове
+			if (*length==-1)//действия, если не известна максимальная длина
+			{
+				l=strlen(charword1);//определение длины слова
+				if (l>lmax)//условие нового максимального значения
+				{
+					lmax=l;//присваивание нового максимального значения
+				}
+				if ((strchr(" `~!@#$%^&*()_+{}|:<>?/.,\][-	",string[i-1]))==0)
+				{
+					printf("%s\n",charword1);
+				}
+			}
+			else//действия, если известна максимальная длина
+			{
+				if (strlen(charword1)==*length)//проверка равенства длины слова максимальному значению
+				{
+					printf(" %s",charword1);//вывод слова
+				}
+			}
+			memset(charword1,0,sizeof(charword1));//сброс переменной со словом
+		}
+		else//действия, если слово ещё не закончилось
+		{
+			charword1[i-j]=symbol;//запись символа в переменную для слова
+		}
 	}
-   }
-   else
-   {
-	if (strlen(charword1)==*length) {
-	 printf("%s\n",charword1);
+	if (*length==-1)//действия, если не известна максимальная длина
+	{
+		*length=lmax;//передача максимальной длины в параметр
 	}
-   }
-	//printf("%s\n",charword1);
-	//strcpy(charmax1,charword1);
-	memset(charword1,0,sizeof(charword1));
-  }
-  else
-  {
-  charword1[i-j]=*symbol;
-  }
- }
- if (*length==-1) {
-  *length=lmax;
- }
 }
 

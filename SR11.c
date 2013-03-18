@@ -8,6 +8,12 @@ int main(void)//главная функция
 {
 	int length=-1;//определение переменных
 	char string [100000], charmax[100000];
+	int array[31][21];
+	FILE *fp;
+if ((fp = fopen("test","w"))==NULL) {
+printf("Ошибка при открытии файла.\n");
+exit(1);
+}
 	printf("Enter string: ");//запрос ввода
 	gets(string);//считывание строки
 	search(string,&length);//определение максимальной длины слова

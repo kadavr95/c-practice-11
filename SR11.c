@@ -1,10 +1,11 @@
-//—амосто€тельна€ работа 10. ¬ариант 1. яскович ƒмитрий (T02-01c). Dimini Inc. (c)2013
+//—амосто€тельна€ работа 11. ¬ариант 1. яскович ƒмитрий (T02-01c). Dimini Inc. (c)2013
 #include <stdio.h>//подключение библиотеки ввода/вывода
 #include <string.h>//подключение библиотеки работы со строками
 #include <stdlib.h>
 #include <time.h>
 
 int search(char *string, int *length); //прототип функции
+int fillarray(int *(int *(A+i)+j)));
 
 int main(void)//главна€ функци€
 {
@@ -12,11 +13,8 @@ int main(void)//главна€ функци€
 	char string [100000], charmax[100000];
 	int array[31][21];
 	FILE *fp;
-int stime;
-long int ltime;
-ltime=time(NULL);
-stime=(unsigned) ltime/2;
-srand(stime);
+
+	fillarray(&array[31][21]);
 if ((fp = fopen("test","w"))==NULL) {
 printf("ќшибка при открытии файла.\n");
 exit(1);
@@ -31,6 +29,23 @@ exit(1);
 	return 0;
 }
 
+int fillarray(int *(int *(A+i)+j)))
+{
+	int i,j,rowf,columnf;
+		int stime;
+	long int ltime;
+   //	int array[31][21];
+	ltime=time(NULL);
+	stime=(unsigned) ltime/2;
+	srand(stime);
+	rowf=1+30*rand()/RAND_MAX;
+	columnf=1+20*rand()/RAND_MAX;
+	for (i = 1; i <=rowf ; i++) {
+	 for (j = 1; j <= columnf; j++) {
+	   *(*(A+i)+j))=-RAND_MAX+2*rand();
+	 }
+	}
+}
 int search(char *string, int *length)//функци€ работы со строкой
 {
 	int i,j=0,l,lmax=0;//определение переменных

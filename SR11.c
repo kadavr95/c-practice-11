@@ -1,15 +1,22 @@
 //—амосто€тельна€ работа 10. ¬ариант 1. яскович ƒмитрий (T02-01c). Dimini Inc. (c)2013
 #include <stdio.h>//подключение библиотеки ввода/вывода
 #include <string.h>//подключение библиотеки работы со строками
+#include <stdlib.h>
+#include <time.h>
 
 int search(char *string, int *length); //прототип функции
 
 int main(void)//главна€ функци€
 {
-	int length=-1;//определение переменных
+	int length=-1,row,column;//определение переменных
 	char string [100000], charmax[100000];
 	int array[31][21];
 	FILE *fp;
+int stime;
+long int ltime;
+ltime=time(NULL);
+stime=(unsigned) ltime/2;
+srand(stime);
 if ((fp = fopen("test","w"))==NULL) {
 printf("ќшибка при открытии файла.\n");
 exit(1);

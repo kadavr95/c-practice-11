@@ -5,20 +5,18 @@
 #include <time.h>
 
 int search(char *string, int *length); //прототип функции
-int fillarray(int *(int *(A+i)+j)));
+int fillarray(int *rowf,int *columnf);
+int fillfile(int *rowf,int *columnf);
+long int array[31][21];
 
 int main(void)//главная функция
 {
 	int length=-1,row,column;//определение переменных
 	char string [100000], charmax[100000];
-	int array[31][21];
-	FILE *fp;
-
-	fillarray(&array[31][21]);
-if ((fp = fopen("test","w"))==NULL) {
-printf("Ошибка при открытии файла.\n");
-exit(1);
-}
+	//int array[31][21];
+	fillarray(&row,&column);
+	fillfile(&row,&column);
+	printf("%ld %ld",row,column);
 	printf("Enter string: ");//запрос ввода
 	gets(string);//считывание строки
 	search(string,&length);//определение максимальной длины слова
@@ -29,20 +27,39 @@ exit(1);
 	return 0;
 }
 
-int fillarray(int *(int *(A+i)+j)))
+int fillfile(int *rowf,int *columnf)
 {
-	int i,j,rowf,columnf;
+int i,j;
+   FILE *filepointer;
+   char string[20];
+  if ((filepointer = fopen("SR11","w"))==NULL) {
+printf("Error while opening the file.\n");
+exit(1);
+}
+ for (i = 1; i <=*rowf ; i++) {
+	 for (j = 1; j <= *columnf; j++) {
+	  ltoa(array[i][j],string,10);
+	  fputs(string,filepointer);
+	  fputs(" ",filepointer);
+	 }
+	 fputs("\n\n",filepointer);
+}
+ }
+
+int fillarray(int *rowf,int *columnf)
+{
+	int i,j;
 		int stime;
 	long int ltime;
    //	int array[31][21];
 	ltime=time(NULL);
 	stime=(unsigned) ltime/2;
 	srand(stime);
-	rowf=1+30*rand()/RAND_MAX;
-	columnf=1+20*rand()/RAND_MAX;
-	for (i = 1; i <=rowf ; i++) {
-	 for (j = 1; j <= columnf; j++) {
-	   *(*(A+i)+j))=-RAND_MAX+2*rand();
+	*rowf=1+30*rand()/RAND_MAX;
+	*columnf=1+20*rand()/RAND_MAX;
+	for (i = 1; i <=*rowf ; i++) {
+	 for (j = 1; j <= *columnf; j++) {
+	  array[i][j]=-RAND_MAX+2*rand();
 	 }
 	}
 }

@@ -9,6 +9,7 @@
 int search(char *string, int *length); //прототип функции
 int fillarray(int *rowf,int *columnf);
 int fillfile(int *rowf,int *columnf);
+int cleararray(int *rowf, int *columnf);
 int readfile(int *rowf,int *columnf);
 int maxfind(int *rowf,int *columnf)
 long int array[31][21];
@@ -31,6 +32,10 @@ int main(void)//главная функция
 	return 0;
 }
 
+int readfile(int *rowf,int *columnf)
+{
+
+}
 int fillfile(int *rowf,int *columnf)
 {
 int i,j;
@@ -67,6 +72,17 @@ int fillarray(int *rowf,int *columnf)
 	 }
 	}
 }
+
+int cleararray(int *rowf, int *columnf)
+{
+	int i,j;
+		for (i = 0; i <=31 ; i++) {
+	 for (j = 0; j <=21; j++) {
+	  array[i][j]=0;
+	 }
+	}
+}
+
 int search(char *string, int *length)//функция работы со строкой
 {
 	int i,j=0,l,lmax=0;//определение переменных

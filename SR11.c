@@ -11,7 +11,7 @@ int fillarray(int *rowf,int *columnf);
 int fillfile(int *rowf,int *columnf);
 int cleararray(int *rowf, int *columnf);
 int readfile(int *rowf,int *columnf);
-int maxfind(int *rowf,int *columnf)
+int maxfind(int *rowf,int *columnf);
 long int array[31][21];
 
 int main(void)//главная функция
@@ -21,6 +21,7 @@ int main(void)//главная функция
 	//int array[31][21];
 	fillarray(&row,&column);
 	fillfile(&row,&column);
+	cleararray(&row,&column);
 	printf("%ld %ld",row,column);
 	printf("Enter string: ");//запрос ввода
 	gets(string);//считывание строки
@@ -130,5 +131,3 @@ int search(char *string, int *length)//функция работы со строкой
 		*length=lmax;//передача максимальной длины в параметр
 	}
 }
-
-

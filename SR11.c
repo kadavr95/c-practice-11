@@ -4,9 +4,13 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define NUMBER 21
+
 int search(char *string, int *length); //прототип функции
 int fillarray(int *rowf,int *columnf);
 int fillfile(int *rowf,int *columnf);
+int readfile(int *rowf,int *columnf);
+int maxfind(int *rowf,int *columnf)
 long int array[31][21];
 
 int main(void)//главная функция
@@ -31,7 +35,7 @@ int fillfile(int *rowf,int *columnf)
 {
 int i,j;
    FILE *filepointer;
-   char string[20];
+   char string[NUMBER];
   if ((filepointer = fopen("SR11","w"))==NULL) {
 printf("Error while opening the file.\n");
 exit(1);
@@ -110,4 +114,5 @@ int search(char *string, int *length)//функция работы со строкой
 		*length=lmax;//передача максимальной длины в параметр
 	}
 }
+
 

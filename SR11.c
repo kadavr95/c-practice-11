@@ -22,6 +22,7 @@ int main(void)//главная функция
 	fillarray(&row,&column);
 	fillfile(&row,&column);
 	cleararray(&row,&column);
+	readfile(&row,&column);
 	printf("%ld %ld",row,column);
 	printf("Enter string: ");//запрос ввода
 	gets(string);//считывание строки
@@ -33,9 +34,21 @@ int main(void)//главная функция
 	return 0;
 }
 
+
 int readfile(int *rowf,int *columnf)
 {
-
+int i,j,pos;
+char fullstring[NUMBER*25];
+char string[NUMBER];
+FILE *filepointer;
+  if ((filepointer = fopen("SR11","r"))==NULL) {
+printf("Error while opening the file.\n");
+exit(1);
+}
+fgets(fullstring,NUMBER*23,filepointer);
+for (i = 1; i < *rowf; i++) {
+ pos=strchr(fullstring,' ');
+}
 }
 int fillfile(int *rowf,int *columnf)
 {

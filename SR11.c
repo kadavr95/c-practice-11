@@ -6,7 +6,7 @@
 
 #define NUMBER 21
 
-int search(char *string, int *length); //прототип функции
+int search(char *string, int *ii); //прототип функции
 int fillarray(int *rowf,int *columnf);
 int fillfile(int *rowf,int *columnf);
 int cleararray(int *rowf, int *columnf);
@@ -37,7 +37,7 @@ int main(void)//главная функция
 
 int readfile(int *rowf,int *columnf)
 {
-int i,j,pos,length;
+int ii,j,pos,length;
 char fullstring[NUMBER*21];
 char string[NUMBER];
 FILE *filepointer;
@@ -45,9 +45,11 @@ FILE *filepointer;
 printf("Error while opening the file.\n");
 exit(1);
 }
-fgets(fullstring,NUMBER*21,filepointer);
-length=NUMBER*21;
-search(fullstring,&length);
+for (ii = 1; ii <= *rowf; ii++) {
+ fgets(fullstring,NUMBER*21,filepointer);
+search(fullstring,&ii);   
+}
+
 }
 
 int fillfile(int *rowf,int *columnf)
@@ -97,50 +99,33 @@ int cleararray(int *rowf, int *columnf)
 	}
 }
 
-int search(char *string, int *length)//функция работы со строкой
+int search(char *string, int *ii)//функция работы со строкой
 {
-	int i,j=0,l,lmax=0;//определение переменных
+	int i,j=0,k=1,l,lmax=0;//определение переменных
 	char string1[100000],charword1[100000],symbol;
 	memset(charword1,0,sizeof(charword1));//очистка переменной для текущего слова
 	strcpy(string1,string);//сброс данных в локальную переменную
 	for (i = 0; i < strlen(string1); i++)//цикл прохода введённой строки
 	{
 		symbol=string1[i];//считывание символа
-		if ((strchr(" `~!@#$%^&*()_+{}|:<>?/.,\][-	",symbol))|| (i==(strlen(string1)-1)))//условие конца слова или конца строки
+		if ((strchr(" ",symbol))|| (i==(strlen(string1)-1)))//условие конца слова или конца строки
 		{
 			if (i==(strlen(string1)-1))//действия в случае конца строки
 			{
 				charword1[i-j]=symbol;//завершение считывания слова
 			}
 			j=i+1;//изменение переменной отвечающей за место считанного символа в слове
-			if (*length==-1)//действия, если не известна максимальная длина
-			{
-				l=strlen(charword1);//определение длины слова
-				if (l>lmax)//условие нового максимального значения
-				{
-					lmax=l;//присваивание нового максимального значения
-				}
-				if ((strchr(" `~!@#$%^&*()_+{}|:<>?/.,\][-	",string[i-1]))==0)
-				{
-					printf("%s\n",charword1);
-				}
-			}
-			else//действия, если известна максимальная длина
-			{
-				if (strlen(charword1)==*length)//проверка равенства длины слова максимальному значению
-				{
-					printf(" %s",charword1);//вывод слова
-				}
-			}
+			   //	if (strlen(charword1)==*length)//проверка равенства длины слова максимальному значению
+				//{
+				   //	printf(" %s",charword1);//вывод слова
+				   array[*ii][k]=atol(charword1);
+				   k=k+1;
+				//}
 			memset(charword1,0,sizeof(charword1));//сброс переменной со словом
 		}
 		else//действия, если слово ещё не закончилось
 		{
 			charword1[i-j]=symbol;//запись символа в переменную для слова
 		}
-	}
-	if (*length==-1)//действия, если не известна максимальная длина
-	{
-		*length=lmax;//передача максимальной длины в параметр
 	}
 }

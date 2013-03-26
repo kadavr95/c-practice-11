@@ -37,19 +37,19 @@ int main(void)//главная функция
 
 int readfile(int *rowf,int *columnf)
 {
-int i,j,pos;
-char fullstring[NUMBER*25];
+int i,j,pos,length;
+char fullstring[NUMBER*21];
 char string[NUMBER];
 FILE *filepointer;
   if ((filepointer = fopen("SR11","r"))==NULL) {
 printf("Error while opening the file.\n");
 exit(1);
 }
-fgets(fullstring,NUMBER*23,filepointer);
-for (i = 1; i < *rowf; i++) {
- pos=strchr(fullstring,' ');
+fgets(fullstring,NUMBER*21,filepointer);
+length=NUMBER*21;
+search(fullstring,&length);
 }
-}
+
 int fillfile(int *rowf,int *columnf)
 {
 int i,j;

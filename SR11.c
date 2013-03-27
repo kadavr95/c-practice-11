@@ -12,6 +12,7 @@ int fillfile(int *rowf,int *columnf);
 int cleararray(int *rowf, int *columnf);
 int readfile(int *rowf,int *columnf);
 int maxfind(int *rowf,int *columnf);
+int printarray(int *rowf,int *columnf);
 long int array[31][21];
 
 int main(void)//главная функция
@@ -23,6 +24,8 @@ int main(void)//главная функция
 	fillfile(&row,&column);
 	cleararray(&row,&column);
 	readfile(&row,&column);
+	maxfind(&row,&column);
+	printarray(&row,&column);
 	printf("%ld %ld",row,column);
 	printf("Enter string: ");//запрос ввода
 	gets(string);//считывание строки
@@ -34,7 +37,34 @@ int main(void)//главная функция
 	return 0;
 }
 
+int printarray(int *rowf,int *columnf)
+{
+int i,j;
+   for (i = 1; i <=*rowf ; i++) {
+	   if (array[i][0]==42) {
+	   for (j = 1; j <= *columnf; j++) {
+				printf("%8ld",array[i][j]);
+	   }
+	   }
+   }
+}
+int maxfind(int *rowf,int *columnf)
+{
+int i,j,max=-2*RAND_MAX,ii;
+	 for (i = 1; i <=*rowf ; i++) {
+	 for (j = 1; j <= *columnf; j++) {
+	   if (array[i][j]>max) {
+		max=array[i,j];
+		for (ii = 0; ii < i; ii++) {
+		 array[ii][0]=0;
+		}
+		array[i][0]=42;
 
+	   }
+
+     }
+     }
+}
 int readfile(int *rowf,int *columnf)
 {
 int ii,j,pos,length;
@@ -67,8 +97,9 @@ exit(1);
 	  fputs(string,filepointer);
 	  fputs(" ",filepointer);
 	 }
-	 fputs("\n\n",filepointer);
+	 fputs("\n",filepointer);
 }
+fclose(filepointer);
  }
 
 int fillarray(int *rowf,int *columnf)
